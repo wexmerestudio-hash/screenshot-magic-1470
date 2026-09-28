@@ -1,10 +1,12 @@
+export type Level = 2 | 4 | 5 | 6 | 7;
+
 export type Qualification = {
   title: string;
-  level: 2 | 4 | 5 | 6 | 7;
+  level: Level;
   price: string;
 };
 
-export const qualifications: Qualification[] = [
+const level2Titles = [
   "Specialist Installation Occupations – Architectural Metalwork Installer",
   "Plant Operations",
   "Specialist Installation – Joint Sealant Application",
@@ -21,39 +23,50 @@ export const qualifications: Qualification[] = [
   "Stonemasonry",
   "Trowel Occupations",
   "Wood Occupations",
-]
-  .map((title) => ({ title, level: 2 as const, price: "£650 + VAT" }))
-  .concat([
-    {
-      title: "Construction Site Supervision – Building & Civil Engineering",
-      level: 4 as const,
-      price: "£1,200 + VAT",
-    },
-    {
-      title: "Controlling Lifting Operations – Supervising Lifts",
-      level: 4 as const,
-      price: "£1,000 + VAT",
-    },
-  ] as never)
-  .concat([
-    {
-      title: "Controlling Lifting Operations – Planning Lift",
-      level: 5 as const,
-      price: "£1,200 + VAT",
-    },
-    {
-      title: "Construction Site Management – Building & Civil Engineering",
-      level: 6 as const,
-      price: "£1,500 + VAT",
-    },
-    {
-      title: "Construction Senior Management",
-      level: 7 as const,
-      price: "£1,800 + VAT",
-    },
-  ] as never);
+];
 
-export const levels = [2, 4, 5, 6, 7] as const;
+export const qualifications: Qualification[] = [
+  ...level2Titles.map<Qualification>((title) => ({
+    title,
+    level: 2,
+    price: "£650 + VAT",
+  })),
+  {
+    title: "Construction Site Supervision – Building & Civil Engineering",
+    level: 4,
+    price: "£1,200 + VAT",
+  },
+  {
+    title: "Controlling Lifting Operations – Supervising Lifts",
+    level: 4,
+    price: "£1,000 + VAT",
+  },
+  {
+    title: "Controlling Lifting Operations – Planning Lift",
+    level: 5,
+    price: "£1,200 + VAT",
+  },
+  {
+    title: "Construction Site Management – Building & Civil Engineering",
+    level: 6,
+    price: "£1,500 + VAT",
+  },
+  {
+    title: "Construction Senior Management",
+    level: 7,
+    price: "£1,800 + VAT",
+  },
+];
+
+export const levels: Level[] = [2, 4, 5, 6, 7];
+
+export const levelBlurb: Record<Level, string> = {
+  2: "Trade and operative level qualifications for workers on the tools.",
+  4: "Supervisory qualifications for foremen, gangers and site supervisors.",
+  5: "Planning and control of complex lifting operations.",
+  6: "Site management for building and civil engineering projects.",
+  7: "Senior management across large construction programmes.",
+};
 
 export const courses = [
   {
@@ -96,4 +109,5 @@ export const CONTACT = {
   phoneHref: "tel:+447447938882",
   whatsapp: "https://wa.me/447447938882",
   email: "nvq.assessor23@gmail.com",
+  languages: ["English", "Romanian", "Italian"],
 };
